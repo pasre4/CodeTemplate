@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Sinyi.Domain.Entity.Customer;
+
+
+namespace Sinyi.O2OLegal.Mapping.Customer
+{
+    public class <~ENTITYNAME~>Map : EntityTypeConfiguration<<~ENTITYNAME~>Entity>
+    {
+ 	public <~ENTITYNAME~>Map()
+        {
+            this.ToTable("<~TABLENAME~>");
+            this.HasKey(t => t.ID);
+        }
+	 
+    }
+}
