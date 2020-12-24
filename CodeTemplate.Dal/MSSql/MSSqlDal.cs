@@ -2,21 +2,27 @@
 using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace CodeTemplate.Dal
 {
-    public class DbDal
+    public class MSSqlDal : IDbDal
     {
-        public List<TableModel> GetAllTables(DbCombobox select)
+        public IDbConnection GetDbConnection(string dbconn)
         {
-            using (var conn = DalHelper.GetConnection(select.Read))
+            return MSSqlHelper.GetConnection(dbconn);
+        }
+
+        public List<TableModel> GetAllTables(string dbconn)
+        {
+            using (var conn = MSSqlHelper.GetConnection(dbconn))
             {
                 return conn.Query<TableModel>("select name from sys.tables order by name").ToList();
             }
         }
 
-        public List<TabelFieldModel> GetTabelFields(DbCombobox select, string tabelName)
+        public List<TabelFieldModel> GetTabelFields(string dbconn, string tabelName)
         {
             var sql = $@"SELECT a.name as Name,
                                 b.name as Type,
@@ -39,7 +45,7 @@ namespace CodeTemplate.Dal
                             left join sys.extended_properties f on d.id=f.class and f.minor_id=0
                             where d.name = '{tabelName}'
                             order by a.id,a.colorder";
-            using (var conn = DalHelper.GetConnection(select.Read))
+            using (var conn = MSSqlHelper.GetConnection(dbconn))
             {
                 return conn.Query<TabelFieldModel>(sql).ToList();
             }

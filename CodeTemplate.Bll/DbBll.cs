@@ -7,16 +7,27 @@ namespace CodeTemplate.Bll
 {
     public class DbBll
     {
-        private readonly Lazy<DbDal> dbDal = new Lazy<DbDal>();
+        private readonly IDbDal msSqlDal = new MSSqlDal();
+        private readonly IDbDal pgSqlDal = new PGSqlDal();
 
         public List<TableModel> GetAllTables(DbCombobox select)
         {
-            return dbDal.Value.GetAllTables(select);
+            switch (select.Type)
+            {
+                case "MSSQL": return msSqlDal.GetAllTables(select.Read);
+                case "POSTGRESQL": return pgSqlDal.GetAllTables(select.Read);
+            }
+            return null;
         }
 
         public List<TabelFieldModel> GetTabelFields(DbCombobox select, string tabelName)
         {
-            return dbDal.Value.GetTabelFields(select, tabelName);
+            switch (select.Type)
+            {
+                case "MSSQL": return msSqlDal.GetTabelFields(select.Read, tabelName);
+                case "POSTGRESQL": return pgSqlDal.GetTabelFields(select.Read, tabelName);
+            }
+            return null;
         }
     }
 }

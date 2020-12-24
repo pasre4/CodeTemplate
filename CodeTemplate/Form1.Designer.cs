@@ -38,7 +38,17 @@
             this.entityStr = new System.Windows.Forms.TextBox();
             this.tab_map = new System.Windows.Forms.TabPage();
             this.mapStr = new System.Windows.Forms.TextBox();
+            this.tab_repository = new System.Windows.Forms.TabPage();
+            this.repositoryStr = new System.Windows.Forms.TextBox();
             this.tabelField = new System.Windows.Forms.DataGridView();
+            this.tabelFieldModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabel = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_create = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.modelName = new System.Windows.Forms.TextBox();
+            this.isDefault = new System.Windows.Forms.CheckBox();
+            this.Export = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,21 +56,13 @@
             this.isCreasingDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isNullDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fieldLengthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabelFieldModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabel = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_create = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.modelName = new System.Windows.Forms.TextBox();
-            this.tab_repository = new System.Windows.Forms.TabPage();
-            this.repositoryStr = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tab.SuspendLayout();
             this.tab_entity.SuspendLayout();
             this.tab_map.SuspendLayout();
+            this.tab_repository.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabelField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabelFieldModelBindingSource)).BeginInit();
-            this.tab_repository.SuspendLayout();
             this.SuspendLayout();
             // 
             // database
@@ -96,10 +98,10 @@
             this.tab.Controls.Add(this.tab_entity);
             this.tab.Controls.Add(this.tab_map);
             this.tab.Controls.Add(this.tab_repository);
-            this.tab.Location = new System.Drawing.Point(914, 26);
+            this.tab.Location = new System.Drawing.Point(1065, 26);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
-            this.tab.Size = new System.Drawing.Size(1048, 807);
+            this.tab.Size = new System.Drawing.Size(897, 807);
             this.tab.TabIndex = 3;
             // 
             // tab_entity
@@ -108,7 +110,7 @@
             this.tab_entity.Location = new System.Drawing.Point(8, 39);
             this.tab_entity.Name = "tab_entity";
             this.tab_entity.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_entity.Size = new System.Drawing.Size(1032, 760);
+            this.tab_entity.Size = new System.Drawing.Size(881, 760);
             this.tab_entity.TabIndex = 2;
             this.tab_entity.Tag = "";
             this.tab_entity.Text = "Entity";
@@ -122,7 +124,7 @@
             this.entityStr.Multiline = true;
             this.entityStr.Name = "entityStr";
             this.entityStr.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.entityStr.Size = new System.Drawing.Size(1026, 754);
+            this.entityStr.Size = new System.Drawing.Size(875, 754);
             this.entityStr.TabIndex = 0;
             // 
             // tab_map
@@ -146,6 +148,27 @@
             this.mapStr.Size = new System.Drawing.Size(1026, 754);
             this.mapStr.TabIndex = 0;
             // 
+            // tab_repository
+            // 
+            this.tab_repository.Controls.Add(this.repositoryStr);
+            this.tab_repository.Location = new System.Drawing.Point(8, 39);
+            this.tab_repository.Name = "tab_repository";
+            this.tab_repository.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_repository.Size = new System.Drawing.Size(1032, 760);
+            this.tab_repository.TabIndex = 4;
+            this.tab_repository.Text = "Repository";
+            this.tab_repository.UseVisualStyleBackColor = true;
+            // 
+            // repositoryStr
+            // 
+            this.repositoryStr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.repositoryStr.Location = new System.Drawing.Point(3, 3);
+            this.repositoryStr.Multiline = true;
+            this.repositoryStr.Name = "repositoryStr";
+            this.repositoryStr.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.repositoryStr.Size = new System.Drawing.Size(1026, 754);
+            this.repositoryStr.TabIndex = 0;
+            // 
             // tabelField
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -163,54 +186,11 @@
             this.tabelField.DataSource = this.tabelFieldModelBindingSource;
             this.tabelField.Location = new System.Drawing.Point(31, 26);
             this.tabelField.Name = "tabelField";
+            this.tabelField.RowHeadersVisible = false;
+            this.tabelField.RowHeadersWidth = 22;
             this.tabelField.RowTemplate.Height = 20;
-            this.tabelField.Size = new System.Drawing.Size(839, 807);
+            this.tabelField.Size = new System.Drawing.Size(1015, 807);
             this.tabelField.TabIndex = 2;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.FillWeight = 200F;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "名称";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "字段类型";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            // 
-            // descDataGridViewTextBoxColumn
-            // 
-            this.descDataGridViewTextBoxColumn.DataPropertyName = "Desc";
-            this.descDataGridViewTextBoxColumn.HeaderText = "描述";
-            this.descDataGridViewTextBoxColumn.Name = "descDataGridViewTextBoxColumn";
-            this.descDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // isPrimaryDataGridViewCheckBoxColumn
-            // 
-            this.isPrimaryDataGridViewCheckBoxColumn.DataPropertyName = "IsPrimary";
-            this.isPrimaryDataGridViewCheckBoxColumn.HeaderText = "是否主键";
-            this.isPrimaryDataGridViewCheckBoxColumn.Name = "isPrimaryDataGridViewCheckBoxColumn";
-            // 
-            // isCreasingDataGridViewCheckBoxColumn
-            // 
-            this.isCreasingDataGridViewCheckBoxColumn.DataPropertyName = "IsCreasing";
-            this.isCreasingDataGridViewCheckBoxColumn.HeaderText = "是否自增";
-            this.isCreasingDataGridViewCheckBoxColumn.Name = "isCreasingDataGridViewCheckBoxColumn";
-            // 
-            // isNullDataGridViewCheckBoxColumn
-            // 
-            this.isNullDataGridViewCheckBoxColumn.DataPropertyName = "IsNull";
-            this.isNullDataGridViewCheckBoxColumn.HeaderText = "是否允许空值";
-            this.isNullDataGridViewCheckBoxColumn.Name = "isNullDataGridViewCheckBoxColumn";
-            // 
-            // fieldLengthDataGridViewTextBoxColumn
-            // 
-            this.fieldLengthDataGridViewTextBoxColumn.DataPropertyName = "FieldLength";
-            this.fieldLengthDataGridViewTextBoxColumn.HeaderText = "字段长度";
-            this.fieldLengthDataGridViewTextBoxColumn.Name = "fieldLengthDataGridViewTextBoxColumn";
-            this.fieldLengthDataGridViewTextBoxColumn.Width = 150;
             // 
             // tabelFieldModelBindingSource
             // 
@@ -236,7 +216,7 @@
             // 
             // btn_create
             // 
-            this.btn_create.Location = new System.Drawing.Point(1823, 39);
+            this.btn_create.Location = new System.Drawing.Point(1700, 29);
             this.btn_create.Name = "btn_create";
             this.btn_create.Size = new System.Drawing.Size(115, 45);
             this.btn_create.TabIndex = 3;
@@ -247,7 +227,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1041, 49);
+            this.label2.Location = new System.Drawing.Point(987, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 24);
             this.label2.TabIndex = 4;
@@ -255,31 +235,84 @@
             // 
             // modelName
             // 
-            this.modelName.Location = new System.Drawing.Point(1155, 39);
+            this.modelName.Location = new System.Drawing.Point(1101, 39);
             this.modelName.Name = "modelName";
             this.modelName.Size = new System.Drawing.Size(330, 35);
             this.modelName.TabIndex = 5;
             // 
-            // tab_repository
+            // isDefault
             // 
-            this.tab_repository.Controls.Add(this.repositoryStr);
-            this.tab_repository.Location = new System.Drawing.Point(8, 39);
-            this.tab_repository.Name = "tab_repository";
-            this.tab_repository.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_repository.Size = new System.Drawing.Size(1032, 760);
-            this.tab_repository.TabIndex = 4;
-            this.tab_repository.Text = "Repository";
-            this.tab_repository.UseVisualStyleBackColor = true;
+            this.isDefault.AutoSize = true;
+            this.isDefault.Location = new System.Drawing.Point(1491, 41);
+            this.isDefault.Name = "isDefault";
+            this.isDefault.Size = new System.Drawing.Size(186, 28);
+            this.isDefault.TabIndex = 6;
+            this.isDefault.Text = "是否默认构造";
+            this.isDefault.UseVisualStyleBackColor = true;
             // 
-            // repositoryStr
+            // Export
             // 
-            this.repositoryStr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.repositoryStr.Location = new System.Drawing.Point(3, 3);
-            this.repositoryStr.Multiline = true;
-            this.repositoryStr.Name = "repositoryStr";
-            this.repositoryStr.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.repositoryStr.Size = new System.Drawing.Size(1026, 754);
-            this.repositoryStr.TabIndex = 0;
+            this.Export.Location = new System.Drawing.Point(1836, 32);
+            this.Export.Name = "Export";
+            this.Export.Size = new System.Drawing.Size(115, 45);
+            this.Export.TabIndex = 3;
+            this.Export.Text = "导出";
+            this.Export.UseVisualStyleBackColor = true;
+            this.Export.Click += new System.EventHandler(this.exportEntity);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "名称";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "字段类型";
+            this.typeDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            // 
+            // descDataGridViewTextBoxColumn
+            // 
+            this.descDataGridViewTextBoxColumn.DataPropertyName = "Desc";
+            this.descDataGridViewTextBoxColumn.HeaderText = "描述";
+            this.descDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.descDataGridViewTextBoxColumn.Name = "descDataGridViewTextBoxColumn";
+            // 
+            // isPrimaryDataGridViewCheckBoxColumn
+            // 
+            this.isPrimaryDataGridViewCheckBoxColumn.DataPropertyName = "IsPrimary";
+            this.isPrimaryDataGridViewCheckBoxColumn.HeaderText = "是否主键";
+            this.isPrimaryDataGridViewCheckBoxColumn.MinimumWidth = 10;
+            this.isPrimaryDataGridViewCheckBoxColumn.Name = "isPrimaryDataGridViewCheckBoxColumn";
+            this.isPrimaryDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // isCreasingDataGridViewCheckBoxColumn
+            // 
+            this.isCreasingDataGridViewCheckBoxColumn.DataPropertyName = "IsCreasing";
+            this.isCreasingDataGridViewCheckBoxColumn.HeaderText = "是否自增";
+            this.isCreasingDataGridViewCheckBoxColumn.MinimumWidth = 10;
+            this.isCreasingDataGridViewCheckBoxColumn.Name = "isCreasingDataGridViewCheckBoxColumn";
+            this.isCreasingDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // isNullDataGridViewCheckBoxColumn
+            // 
+            this.isNullDataGridViewCheckBoxColumn.DataPropertyName = "IsNull";
+            this.isNullDataGridViewCheckBoxColumn.HeaderText = "是否允许空值";
+            this.isNullDataGridViewCheckBoxColumn.MinimumWidth = 10;
+            this.isNullDataGridViewCheckBoxColumn.Name = "isNullDataGridViewCheckBoxColumn";
+            this.isNullDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // fieldLengthDataGridViewTextBoxColumn
+            // 
+            this.fieldLengthDataGridViewTextBoxColumn.DataPropertyName = "FieldLength";
+            this.fieldLengthDataGridViewTextBoxColumn.HeaderText = "字段长度";
+            this.fieldLengthDataGridViewTextBoxColumn.MinimumWidth = 10;
+            this.fieldLengthDataGridViewTextBoxColumn.Name = "fieldLengthDataGridViewTextBoxColumn";
+            this.fieldLengthDataGridViewTextBoxColumn.Width = 80;
             // 
             // Form1
             // 
@@ -287,8 +320,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1974, 986);
+            this.Controls.Add(this.isDefault);
             this.Controls.Add(this.modelName);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.Export);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.databaseLabel);
@@ -307,10 +342,10 @@
             this.tab_entity.PerformLayout();
             this.tab_map.ResumeLayout(false);
             this.tab_map.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelFieldModelBindingSource)).EndInit();
             this.tab_repository.ResumeLayout(false);
             this.tab_repository.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelFieldModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,13 +360,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView tabelField;
         private System.Windows.Forms.BindingSource tabelFieldModelBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isPrimaryDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isCreasingDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isNullDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fieldLengthDataGridViewTextBoxColumn;
         private System.Windows.Forms.TabControl tab;
         private System.Windows.Forms.TabPage tab_entity;
         private System.Windows.Forms.TabPage tab_map;
@@ -342,6 +370,15 @@
         private System.Windows.Forms.TextBox mapStr;
         private System.Windows.Forms.TabPage tab_repository;
         private System.Windows.Forms.TextBox repositoryStr;
+        private System.Windows.Forms.CheckBox isDefault;
+        private System.Windows.Forms.Button Export;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isPrimaryDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isCreasingDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isNullDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fieldLengthDataGridViewTextBoxColumn;
     }
 }
 

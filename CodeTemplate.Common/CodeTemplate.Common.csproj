@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CamelHelper.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="FieldTypeChange.cs" />
     <Compile Include="IEnumerableHelper.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="PgSqlFieldTypeChange.cs" />
     <Compile Include="MSSqlFieldTypeChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />

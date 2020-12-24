@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CodeTemplate
@@ -38,6 +39,7 @@ namespace CodeTemplate
             DbCombobox select = (DbCombobox)database.SelectedItem;
             List<TableModel> tableList = dbBll.Value.GetAllTables(select);
 
+            tabel.Items.Clear();
             tabel.Items.AddRange(tableList.ToArray());
         }
 
@@ -53,15 +55,25 @@ namespace CodeTemplate
         private void btn_create_Click(object sender, EventArgs e)
         {
             var tabelData = tabelField.DataSource as BindingList<TabelFieldModel>;
+            var isDefaultSet = isDefault.Checked;
             if (tabelData == null)
             {
                 MessageBox.Show("未选择表");
                 return;
             }
 
-            entityStr.Text = templateBll.Value.GenerateEntity(modelName.Text, tabelData);
+            var select = (DbCombobox)database.SelectedItem;
+            entityStr.Text = templateBll.Value.GenerateEntity(modelName.Text, tabelData, isDefaultSet, select.Type);
             mapStr.Text = templateBll.Value.GenerateMap(tabel.SelectedItem.ToString(), modelName.Text, tabelData);
             repositoryStr.Text = templateBll.Value.GenerateRepository(modelName.Text);
+        }
+
+        private void exportEntity(object sender, EventArgs e)
+        {
+            FolderBrowserDialog path = new FolderBrowserDialog();
+            path.ShowDialog();
+            var pathUrl = path.SelectedPath;
+            templateBll.Value.ExportEntity(modelName.Text, pathUrl, entityStr.Text);
         }
     }
 }

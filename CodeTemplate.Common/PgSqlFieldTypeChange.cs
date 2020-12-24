@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CodeTemplate.Common
 {
-    public static class MSSqlFieldTypeChange
+    public static class PgSqlFieldTypeChange
     {
-        public static string MSSqlToModelType(this string value)
+        public static string PgSqlToModelType(this string value)
         {
             var type = value?.Trim()?.ToLower() ?? string.Empty;
             var ret = "string";
@@ -20,36 +20,38 @@ namespace CodeTemplate.Common
                 case "varchar":
                 case "nvarchar":
                 case "text":
+                case "bpchar":
                 case "ntext": ret = "string"; break;
                 case "tinyint": ret = "byte"; break;
-                case "int": ret = "int"; break;
+                case "int4": ret = "int"; break;
                 case "timestamp":
                 case "time":
                 case "date":
                 case "datetime": ret = "DateTime"; break;
                 case "decimal":
-                case "float": ret = "double"; break;
+                case "float8": ret = "double"; break;
                 case "bit": ret = "bool"; break;
             }
             
             return ret;
         }
 
-        public static string MSSqlToDefault(this string value)
+        public static string PgSqlToDefault(this string value)
         {
             var type = value?.Trim()?.ToLower() ?? string.Empty;
             var ret = " = string.Empty;";
             switch (type)
             {
-                case "float": 
+                case "float8": 
                 case "decimal":
-                case "int":
+                case "int4":
                 case "bigint": ret = " = 0;"; break;
                 case "char":
                 case "nchar":
                 case "varchar":
                 case "nvarchar":
                 case "text":
+                case "bpchar":
                 case "ntext": ret = " = string.Empty;"; break;
                 case "timestamp":
                 case "time":

@@ -2,6 +2,7 @@
 using CodeTemplate.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,9 @@ namespace CodeTemplate.Bll
 {
     public class TemplateBll
     {
-        public string GenerateEntity(string modelName, IEnumerable<TabelFieldModel> fields)
+        public string GenerateEntity(string modelName, IEnumerable<TabelFieldModel> fields, bool isDefault, string dataBaseType)
         {
+            var fieldMethod = new FieldTypeChange(dataBaseType);
             var ret = string.Empty;
             var field = new List<string>();
             fields.ToList().ForEach(x =>
@@ -20,11 +22,14 @@ namespace CodeTemplate.Bll
     /// <summary>
     /// {0}
     /// </summary>
-    public {1} {2} {3}
-",x.Desc,x.Type.MSSqlToModelType(), x.Name, "{ get; set; }"));
+    {5}
+    public {1} {2} {3}{4}
+", x.Desc, fieldMethod.ToModelType(x.Type), fieldMethod.ToModelEntityName(x.Name), "{ get; set; }", isDefault ? fieldMethod.ToModelDefault(x.Type) : "", fieldMethod.ToColumnName(x.Name)));
             });
 
-            ret += $@"public class {modelName}Entity : BaseEntity
+            ret += $"[Table(\"{modelName}\")]";
+            ret += $@"
+public class {modelName.toCamelCase()}Entity : BaseEntity
 ";
             ret += "{";
             ret += string.Join("", field);
@@ -33,7 +38,7 @@ namespace CodeTemplate.Bll
             return ret;
         }
 
-        public string GenerateMap(string tableName,string modelName, IEnumerable<TabelFieldModel> fields)
+        public string GenerateMap(string tableName, string modelName, IEnumerable<TabelFieldModel> fields)
         {
             var template = @"public class ~ENTITYNAME~Map : EntityTypeConfiguration<~ENTITYNAME~Entity>
 {
@@ -43,11 +48,11 @@ namespace CodeTemplate.Bll
         this.HasKey(t => t.~Key~);
     }
 }";
-            var keyField = fields.First(x => x.IsPrimary);
+            var keyField = fields.FirstOrDefault(x => x.IsPrimary);
             var ret = string.Empty;
             ret = template.Replace("~ENTITYNAME~", modelName);
             ret = ret.Replace("~TABLENAME~", "\"" + tableName + "\"");
-            ret = ret.Replace("~Key~", keyField == null ? "ID" : keyField.Name);
+            ret = ret.Replace("~Key~", keyField == null ? "" : keyField.Name);
 
             return ret;
         }
@@ -59,6 +64,38 @@ namespace CodeTemplate.Bll
     
 }";
             return template.Replace("~ENTITYNAME~", modelName);
+        }
+
+        public void ExportEntity(string tableName, string path, string value)
+        {
+            var filePath = Path.Combine(path, tableName.toCamelCase()) + ".cs";
+            var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "template/NetModularDomain.txt");
+            var content = ReadContext(templatePath);
+            var newStr = content.Replace("{entityContent}", value);
+            WriteContext(newStr, filePath);
+        }
+
+        private string ReadContext(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            string context = sr.ReadToEnd();
+            fs.Close();
+            sr.Close();
+            sr.Dispose();
+            fs.Dispose();
+            return context;
+        }
+
+        public void WriteContext(string Context, string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamWriter sw = new StreamWriter(fs); // 创建写入流
+            sw.Write(Context);
+            sw.Close();
+            sw.Dispose();
+            fs.Close();
+            fs.Dispose();
         }
     }
 }

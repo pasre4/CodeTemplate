@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CodeTemplate.Dal
 {
-    internal static class DalHelper
+    internal static class MSSqlHelper
     {
         internal static IDbConnection GetConnection(string dbName)
         {
