@@ -68,7 +68,7 @@ public class {modelName.toCamelCase()}Entity : BaseEntity
 
         public void ExportEntity(string tableName, string path, string value)
         {
-            var filePath = Path.Combine(path, tableName.toCamelCase()) + ".cs";
+            var filePath = Path.Combine(path, tableName.toCamelCase()) + "Entity.cs";
             var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "template/NetModularDomain.txt");
             var content = ReadContext(templatePath);
             var newStr = content.Replace("{entityContent}", value);
